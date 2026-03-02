@@ -429,7 +429,6 @@ body.sidebar-mini .main-content {
     margin-top: 5px;
 }
 
-/* --- Card Colors (As per image) --- */
 .single_card.card-purple { background: linear-gradient(135deg, #6366f1, #a855f7); }
 .single_card.card-blue   { background: linear-gradient(135deg, #0ea5e9, #2563eb); }
 .single_card.card-cyan   { background: linear-gradient(135deg, #06b6d4, #0891b2); }
@@ -439,7 +438,6 @@ body.sidebar-mini .main-content {
 .single_card.card-green  { background: linear-gradient(135deg, #10b981, #059669); }
 .single_card.card-indigo { background: linear-gradient(135deg, #4f46e5, #3730a3); }
 
-/* --- Alert Badge for Low Stock --- */
 .single_card .alert-tag {
     background: #ff9800;
     color: #fff;
@@ -450,7 +448,6 @@ body.sidebar-mini .main-content {
     text-transform: uppercase;
 }
 
-/* --- Small White Cards (Bottom Row) --- */
 .single_card.small-stat-card {
     background: #fff;
     padding: 1.25rem;
@@ -479,7 +476,6 @@ body.sidebar-mini .main-content {
 
 
 
-/* --- Small Stat Card Premium Design --- */
 .small-stat-card {
     background: #fff;
     padding: 1rem 1.25rem;
@@ -493,7 +489,7 @@ body.sidebar-mini .main-content {
     align-items: center;
     -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid var(--primary); /* ডিফল্ট কালার */
+    border-left: 4px solid var(--primary); 
     -webkit-transition: var(--transition-smooth);
     -o-transition: var(--transition-smooth);
     transition: var(--transition-smooth);
@@ -509,7 +505,6 @@ body.sidebar-mini .main-content {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* আইকন বক্সের ডিজাইন */
 .small-stat-card .icon-box {
     width: 48px;
     height: 48px;
@@ -531,7 +526,6 @@ body.sidebar-mini .main-content {
     transition: var(--transition-smooth);
 }
 
-/* টেক্সট ইনফরমেশন */
 .small-stat-card .info p {
     margin: 0;
     color: #6c757d;
@@ -547,8 +541,10 @@ body.sidebar-mini .main-content {
     font-size: 1.2rem;
 }
 
-/* আইকন কালার ভেরিয়েশন (Soft Backgrounds) */
 .icon-purple { background-color: rgba(99, 102, 241, 0.1); color: #6366f1; }
 .icon-success { background-color: rgba(16, 185, 129, 0.1); color: #10b981; }
 .icon-warning { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; }
 .icon-info    { background-color: rgba(14, 165, 233, 0.1); color: #0ea5e9; }
+
+
+

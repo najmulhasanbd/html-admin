@@ -7,7 +7,19 @@
     <title>Premium Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            background-color: #f5f7f9;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -659,12 +671,86 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row mt-3 g-3">
+                    <div class="col-xl-8 col-md-12">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h5 class="fw-bold m-0" style="color: #000;">Orders Analytics</h5>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="d-none d-sm-flex align-items-center gap-3 small">
+                                        <span><i class="fa-solid fa-circle me-1"
+                                                style="color: #3C407A; font-size: 8px;"></i> Offline orders</span>
+                                        <span><i class="fa-solid fa-circle me-1"
+                                                style="color: #FFA412; font-size: 8px;"></i> Online orders</span>
+                                    </div>
+                                    <select class="form-select form-select-sm border-0 bg-light rounded-3"
+                                        style="width: 100px;">
+                                        <option>Monthly</option>
+                                        <option>Weekly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="position-relative" style="height: 350px;">
+                                <canvas id="ordersChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-12">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="fw-bold m-0" style="color: #000;">Earnings</h5>
+                            </div>
+
+                            <div class="position-relative mb-4" style="height: 250px;">
+                                <canvas id="earningsChart"></canvas>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #3C407A; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Sales 45%
+                                </div>
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #BDCFFB; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Pending 10%
+                                </div>
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #9B8DFB; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Utilities 5%
+                                </div>
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #FFA412; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Delivery 15%
+                                </div>
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #FF8E8E; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Processing 25%
+                                </div>
+                                <div class="col-6 d-flex align-items-center small">
+                                    <span class="badge rounded-circle me-2"
+                                        style="background: #10B981; width: 10px; height: 10px; padding: 0;"> </span>
+                                    Others 0%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com"></script>
     <script src="js/main.js"></script>
 </body>
 
