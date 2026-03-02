@@ -1,0 +1,367 @@
+/* --- Google Fonts --- */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* --- Reset & Variables --- */
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 65px;
+    --sidebar-bg: #3C407A;
+    --primary: #6366f1;
+    --bg-body: #f5f7f9;
+    --header-height: 4.25rem;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-main: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.notification-bell i {
+	color: #FFA412;
+}
+/* --- App Header & Main Content Layout --- */
+.app-header {
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: var(--sidebar-width);
+    /* Default state */
+    background: #fff;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.main-content {
+    position: relative;
+    padding-top: var(--header-height);
+    margin-left: var(--sidebar-width);
+    /* Default state */
+    transition: var(--transition-smooth);
+    min-height: 100vh;
+}
+
+/* --- Sidebar Base --- */
+.app-sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: #fff;
+    color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 103;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar-header img {
+    max-width: 80%;
+}
+
+/* --- Scrollable Area (The Fix) --- */
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Custom Scrollbar for Chrome/Safari */
+.sidebar-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.sidebar-content:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* --- Navigation & Submenu (No-Skip Animation) --- */
+.nav-item a,
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+}
+
+.nav-item i:first-child {
+    width: 25px;
+    font-size: 1.1rem;
+    margin-right: 12px;
+}
+
+.nav-item:hover>a,
+.nav-item.open>.dropdown-header {
+    color: #000;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.has-dropdown.open ul.submenu li {
+    line-height: 1;
+}
+
+.nav-item.open .submenu {
+    max-height: 1000px;
+    /* Sufficient height to avoid skipping */
+}
+
+.submenu li a {
+    padding-left: 57px;
+    font-size: 0.9rem;
+}
+
+.arrow {
+    margin-left: auto;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.open .arrow {
+    transform: rotate(90deg);
+}
+
+/* --- Responsive & Sidebar Mini Logic (The Fix) --- */
+@media (min-width: 992px) {
+
+    /* When Sidebar is Mini */
+    body.sidebar-mini .app-sidebar {
+        width: var(--sidebar-collapsed-width);
+    }
+
+    body.sidebar-mini .app-header,
+    body.sidebar-mini .main-content {
+        left: var(--sidebar-collapsed-width);
+        margin-left: 0;
+    }
+
+    /* Sidebar Hover Effect */
+    body.sidebar-mini .app-sidebar:hover {
+        width: var(--sidebar-width);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide text & force-close submenu on mini mode */
+    body.sidebar-mini .app-sidebar:not(:hover) span,
+    body.sidebar-mini .app-sidebar:not(:hover) .arrow,
+    body.sidebar-mini .app-sidebar:not(:hover) .submenu {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0 !important;
+    }
+
+    body.sidebar-mini .app-sidebar:not(:hover) .sidebar-content {
+        overflow-y: hidden;
+    }
+}
+
+#sidebar-toggle {
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+}
+
+/* Mobile View Reset */
+@media (max-width: 991px) {
+    .app-sidebar {
+        transform: translateX(-100%);
+    }
+
+    body.sidebar-open .app-sidebar {
+        transform: translateX(0);
+    }
+
+    .app-header,
+    .main-content {
+        left: 0 !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    body.sidebar-open::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 101;
+    }
+}
+
+.sidebar-content ul.nav-list .nav-item {
+    transition: var(--sidebar-bg);
+}
+
+.sidebar-content ul.nav-list .nav-item:hover {
+    background: var(--sidebar-bg);
+}
+
+.sidebar-content ul.nav-list .nav-item.active {
+    border-left: 4px solid var(--primary);
+    background: var(--sidebar-bg);
+}
+
+.nav-item.has-dropdown:hover .dropdown-header span,
+.nav-item.has-dropdown:hover .dropdown-header i {
+    color: #fff;
+}
+
+.sidebar-content ul.nav-list .nav-item.active a {
+    color: #fff;
+}
+
+.sidebar-content ul.nav-list .nav-item.open .arrow {
+    color: var(--primary);
+}
+/* --- User Profile Dropdown Design --- */
+.user-profile.dropdown {
+    position: relative;
+}
+
+.profile-toggle {
+    cursor: pointer;
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    transition: background 0.3s;
+}
+
+.profile-toggle:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.user-img {
+    width: 40px;
+    height: 40px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    -o-transition: transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+/* ড্রপডাউন মেনু স্টাইল */
+.dropdown-menu-custom {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    width: 220px;
+    background: #fff;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 8px 0;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    -o-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+/* টগল করার জন্য ক্লাস */
+.dropdown-menu-custom.show {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.dropdown-menu-custom li a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 12px 20px;
+    color: #444;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    transition: background 0.2s;
+}
+
+.dropdown-menu-custom li a:hover {
+    background: #f8f9fa;
+}
+
+.dropdown-menu-custom li i {
+    width: 25px;
+    font-size: 1.1rem;
+    margin-right: 12px;
+}
+
+/* আইকন কালারগুলো */
+.text-pink { color: #ff69b4; }
+.text-primary { color: #6366f1; }
+.text-danger { color: #ff5b5b; }
+
+.border-top { 
+    border-top: 1px solid #eee !important; 
+    margin-top: 5px; 
+}
