@@ -1,4 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- ১. Active Link Logic (নতুন যোগ করা হয়েছে) ---
+    const currentUrl = window.location.pathname.split("/").pop(); // বর্তমান পেজের নাম নেয়
+    const allLinks = document.querySelectorAll(".nav-link");
+
+    allLinks.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href === currentUrl) {
+            // লিংকটিকে active করুন
+            link.classList.add("active");
+
+            // যদি এটি কোনো ড্রপডাউনের ভেতরে থাকে, তবে ড্রপডাউনটি ওপেন রাখুন
+            const parentDropdown = link.closest(".nav-item.has-dropdown");
+            if (parentDropdown) {
+                parentDropdown.classList.add("open");
+            }
+        }
+    });
+
+    // --- ২. আপনার আগের সাইডবার টগল লজিক (ঠিক রাখা হয়েছে) ---
     const sidebarToggle = document.getElementById("sidebar-toggle");
     const toggleIcon = document.getElementById("toggle-icon");
     const dropdownHeaders = document.querySelectorAll(".dropdown-header");
@@ -21,11 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.classList.toggle("sidebar-mini");
             }
 
-            toggleIcon.classList.toggle("fa-bars");
-            toggleIcon.classList.toggle("fa-xmark");
+            if (toggleIcon) {
+                toggleIcon.classList.toggle("fa-bars");
+                toggleIcon.classList.toggle("fa-xmark");
+            }
         });
     }
 
+    // ড্রপডাউন ওপেন/ক্লোজ লজিক
     dropdownHeaders.forEach(header => {
         header.addEventListener("click", function (e) {
             e.stopPropagation();
@@ -43,39 +65,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // আউটসাইড ক্লিক ক্লোজ (Mobile)
     document.addEventListener("click", (e) => {
         if (window.innerWidth < 992 && document.body.classList.contains("sidebar-open")) {
             const sidebar = document.getElementById("app-sidebar");
-            if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+            const toggleBtn = document.getElementById("sidebar-toggle");
+            if (sidebar && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
                 document.body.classList.remove("sidebar-open");
-                toggleIcon.classList.add("fa-bars");
-                toggleIcon.classList.remove("fa-xmark");
+                if (toggleIcon) {
+                    toggleIcon.classList.add("fa-bars");
+                    toggleIcon.classList.remove("fa-xmark");
+                }
             }
         }
     });
 });
 
+// প্রোফাইল মেনু ফাংশন
 function toggleProfileMenu(event) {
     event.stopPropagation();
     const menu = document.getElementById('profileMenu');
     const arrow = document.querySelector('.dropdown-arrow');
 
-    menu.classList.toggle('show');
-
-    if (menu.classList.contains('show')) {
-        arrow.style.transform = 'rotate(180deg)';
-    } else {
-        arrow.style.transform = 'rotate(0deg)';
+    if (menu) {
+        menu.classList.toggle('show');
+        if (arrow) {
+            arrow.style.transform = menu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
     }
 }
 
+// প্রোফাইল মেনু আউটসাইড ক্লিক ক্লোজ
 document.addEventListener('click', function (e) {
     const menu = document.getElementById('profileMenu');
     const toggle = document.getElementById('profileDropdown');
+    const arrow = document.querySelector('.dropdown-arrow');
 
-    if (!toggle.contains(e.target)) {
+    if (menu && toggle && !toggle.contains(e.target)) {
         menu.classList.remove('show');
-        document.querySelector('.dropdown-arrow').style.transform = 'rotate(0deg)';
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
     }
 });
 
@@ -99,7 +127,7 @@ const orderData = {
             borderColor: '#3C407A',
             backgroundColor: purpleGradient,
             fill: true,
-            tension: 0.4, 
+            tension: 0.4,
             pointRadius: 0,
             pointHoverRadius: 6,
             borderWidth: 3
@@ -125,7 +153,7 @@ new Chart(ctxOrders, {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { display: false } 
+            legend: { display: false }
         },
         scales: {
             y: {
@@ -194,3 +222,5 @@ window.onload = function () {
     const ctx = document.getElementById('earningsChart').getContext('2d');
     new Chart(ctx, config);
 };
+
+
