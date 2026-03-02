@@ -20,13 +20,41 @@
             text-decoration: none;
         }
 
+        .input-group-text {
+            color: #334155;
+            font-weight: bold;
+            border-color: #dee2e6;
+        }
+
+        .form-control,
+        .form-select {
+            border-color: #dee2e6;
+            padding: 10px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: none;
+            border-color: #0d6efd;
+        }
+
+        /* বাটন কালার ইমেজের মতো ব্লু করতে */
+        .btn-primary {
+            background-color: #2563eb;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
         .cursor-pointer {
             cursor: pointer;
         }
 
         .custom-input {
             border: 1px solid #E2E8F0 !important;
-            border-radius: 0 10px 10px 0 !important;
+            border-radius: 0 !important;
             padding: 12px 15px !important;
             font-size: 0.95rem;
             color: #475569;
@@ -97,11 +125,9 @@
                         <li>
                             <a href="#"><i class="fa-solid fa-user-gear text-primary"></i> Manage Account</a>
                         </li>
-                         <li>
-                <a href="theme.html"
-                  ><i class="fa-brands fa-atlassian"></i>Theme</a
-                >
-              </li>
+                        <li>
+                            <a href="theme.html"><i class="fa-brands fa-atlassian"></i>Theme</a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa-solid fa-key text-pink"></i> Change Password</a>
                         </li>
@@ -602,6 +628,148 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 mt-3">
+                        <div class="d-flex align-items-center pb-4">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3">
+                                <i class="fa-solid fa-box-open text-primary"></i>
+                            </div>
+                            <h5 class="fw-bold m-0" style="color: #334155;">Price For Single Product</h5>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold text-secondary small">Regular Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">৳</span>
+                                    <input type="number" class="form-control bg-white border-start-0 ps-0"
+                                        placeholder="Price">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold text-secondary small">Discount Type</label>
+                                <select class="form-select bg-white text-muted">
+                                    <option selected disabled>Select Type</option>
+                                    <option value="flat">Flat</option>
+                                    <option value="percent">Percent</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold text-secondary small">Discount Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0">৳</span>
+                                    <input type="number" class="form-control bg-white border-start-0 ps-0"
+                                        placeholder="Price">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold text-secondary small">Sale Price</label>
+                                <div class="input-group shadow-none">
+                                    <span class="input-group-text bg-light border-end-0">৳</span>
+                                    <input type="number" class="form-control bg-white border-start-0 ps-0"
+                                        placeholder="Price">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden p-4 mt-3">
+                        <div class="row">
+                            <div class="card border-0 shadow-sm rounded-4 mt-3 overflow-hidden">
+                                <div class="d-flex align-items-center p-4">
+                                    <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3">
+                                        <i class="fa-solid fa-box-open text-primary"></i>
+                                    </div>
+                                    <h5 class="fw-bold m-0" style="color: #334155;">Price For Variant Product</h5>
+                                </div>
+
+                                <div class="card-body p-4 pt-0">
+                                    <div id="price-variant-container">
+                                        <div class="variant-row border rounded-3 p-3 mb-3 bg-light bg-opacity-10">
+                                            <div class="row g-3">
+                                                <div class="col-md-2">
+                                                    <label
+                                                        class="form-label fw-bold text-secondary small">Variant</label>
+                                                    <input type="text" class="form-control bg-white"
+                                                        placeholder="e.g. Red, XL">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label fw-bold text-secondary small">Purchase
+                                                        Price</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-light border-end-0">৳</span>
+                                                        <input type="number"
+                                                            class="form-control bg-white border-start-0 ps-0"
+                                                            placeholder="Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label fw-bold text-secondary small">Regular
+                                                        Price</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-light border-end-0">৳</span>
+                                                        <input type="number"
+                                                            class="form-control bg-white border-start-0 ps-0"
+                                                            placeholder="Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label fw-bold text-secondary small">Discount
+                                                        Type</label>
+                                                    <select class="form-select bg-white text-muted">
+                                                        <option selected disabled>Select Type</option>
+                                                        <option value="flat">Flat</option>
+                                                        <option value="percent">Percent</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label fw-bold text-secondary small">Discount
+                                                        Price</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-light border-end-0">৳</span>
+                                                        <input type="number"
+                                                            class="form-control bg-white border-start-0 ps-0"
+                                                            placeholder="Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 d-flex align-items-end justify-content-between">
+                                                    <div>
+                                                        <label class="form-label fw-bold text-secondary small">Sale
+                                                            Price</label>
+                                                        <div class="input-group">
+                                                            <span
+                                                                class="input-group-text bg-light border-end-0">৳</span>
+                                                            <input type="number"
+                                                                class="form-control bg-white border-start-0 ps-0"
+                                                                placeholder="Price">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-outline-danger border-0 ms-2 remove-btn"
+                                                        style="display:none;">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-end mt-3">
+                                        <button type="button" id="add-more-btn"
+                                            class="btn btn-primary px-4 py-2 fw-bold shadow-sm rounded-3">
+                                            <i class="fa-solid fa-plus me-2"></i> Add More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6">
                             <div class="card border-0 shadow-sm rounded-4 mt-3 overflow-hidden">
@@ -701,6 +869,26 @@
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ]
             });
+        });
+    </script>
+    <script>
+        document.getElementById('add-more-btn').addEventListener('click', function () {
+            const container = document.getElementById('price-variant-container');
+            const firstRow = container.querySelector('.variant-row');
+
+            const newRow = firstRow.cloneNode(true);
+
+            newRow.querySelectorAll('input').forEach(input => input.value = '');
+            newRow.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+            const removeBtn = newRow.querySelector('.remove-btn');
+            removeBtn.style.display = 'block';
+
+            removeBtn.addEventListener('click', function () {
+                newRow.remove();
+            });
+
+            container.appendChild(newRow);
         });
     </script>
 </body>
