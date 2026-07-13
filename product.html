@@ -7,6 +7,11 @@
     <title>Premium Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -41,11 +46,10 @@
                     <ul class="dropdown-menu-custom" id="profileMenu">
                         <li>
                             <a href="#"><i class="fa-solid fa-user-gear text-primary"></i> Manage Account</a>
-                        </li> <li>
-                <a href="theme.html"
-                  ><i class="fa-brands fa-atlassian"></i>Theme</a
-                >
-              </li>
+                        </li>
+                        <li>
+                            <a href="theme.html"><i class="fa-brands fa-atlassian"></i>Theme</a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa-solid fa-key text-pink"></i> Change Password</a>
                         </li>
@@ -60,13 +64,14 @@
         <aside class="app-sidebar" id="app-sidebar">
             <div class="sidebar-header">
                 <a href="" class="logo"><img src="https://najmulhasanbd.github.io/suitcasefrontend/images/logo.webp"
-                        class="w-full" alt=""></a>
+                        class="w-full" alt="" /></a>
             </div>
 
             <div class="sidebar-content">
                 <ul class="nav-list">
                     <li class="nav-item active">
-                        <a href=""><i class="fa-solid fa-house-chimney"></i> <span>Dashboard</span></a>
+                        <a href=""><i class="fa-solid fa-house-chimney"></i>
+                            <span>Dashboard</span></a>
                     </li>
 
                     <li class="nav-item has-dropdown">
@@ -99,334 +104,36 @@
                             <i class="fa-solid fa-chevron-right arrow"></i>
                         </div>
                         <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
+                            <li><a href="#">All Orders</a></li>
+                            <li><a href="#">Pending Orders</a></li>
+                            <li><a href="#">Refunds</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item has-dropdown">
                         <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
+                            <i class="fa-solid fa-users"></i>
+                            <span>Customers</span>
                             <i class="fa-solid fa-chevron-right arrow"></i>
                         </div>
                         <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
+                            <li><a href="#">Customer List</a></li>
+                            <li><a href="#">Reviews</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
+
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
                     </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <div class="dropdown-header">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Order Management</span>
-                            <i class="fa-solid fa-chevron-right arrow"></i>
-                        </div>
-                        <ul class="submenu">
-                            <li><a href="">All Orders</a></li>
-                            <li><a href="">Pending Orders</a></li>
-                            <li><a href="">Refunds</a></li>
-                        </ul>
+
+                    <li class="nav-item">
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Settings</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -439,9 +146,10 @@
                         <h5 class="mb-0 fw-bold text-secondary">Product List</h5>
                         <a href="product-add.html" class="btn btn-primary btn-sm px-3">+ Add New Product</a>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body p-4">
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0 product-table">
+                            <table id="productTable" class="table table-hover align-middle mb-0 product-table"
+                                style="width:100%">
                                 <thead class="bg-light">
                                     <tr>
                                         <th scope="col" class="ps-4 text-muted fw-semibold text-uppercase small">SL</th>
@@ -551,7 +259,36 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
     <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable({
+                responsive: true,
+                pageLength: 10,
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search products...",
+                    lengthMenu: "Show _MENU_ entries",
+                    paginate: {
+                        next: '<i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>',
+                        previous: '<i class="fa-solid fa-chevron-left" style="font-size: 0.8rem;"></i>'
+                    }
+                },
+                dom: '<"row align-items-center mb-4"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center"f>>' +
+                    '<"row"<"col-sm-12"tr>>' +
+                    '<"row align-items-center mt-4"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7 d-flex justify-content-md-end justify-content-center"p>>'
+            });
+        });
+    </script>
 
 </body>
 

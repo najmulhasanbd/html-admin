@@ -117,34 +117,34 @@ orangeGradient.addColorStop(0, 'rgba(255, 164, 18, 0.1)');
 orangeGradient.addColorStop(1, 'rgba(255, 164, 18, 0)');
 
 const orderData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
         {
             label: 'Offline orders',
-            data: [20, 35, 30, 55, 45, 60, 65],
+            data: [20, 35, 30, 55, 45, 60, 65, 80, 75, 90, 85, 110],
             borderColor: '#3C407A',
             backgroundColor: purpleGradient,
             fill: true,
             tension: 0.4,
             pointRadius: 0,
             pointHoverRadius: 6,
-            borderWidth: 3
+            borderWidth: 2
         },
         {
             label: 'Online orders',
-            data: [30, 25, 45, 40, 65, 50, 70],
+            data: [30, 25, 45, 40, 65, 50, 70, 60, 85, 80, 100, 95],
             borderColor: '#FFA412',
             backgroundColor: orangeGradient,
             fill: true,
             tension: 0.4,
             pointRadius: 0,
             pointHoverRadius: 6,
-            borderWidth: 3
+            borderWidth: 2
         }
     ]
 };
 
-new Chart(ctxOrders, {
+window.ordersChartInstance = new Chart(ctxOrders, {
     type: 'line',
     data: orderData,
     options: {
@@ -218,7 +218,259 @@ const config = {
 
 window.onload = function () {
     const ctx = document.getElementById('earningsChart').getContext('2d');
-    new Chart(ctx, config);
+    window.earningsChartInstance = new Chart(ctx, config);
 };
 
+// Task Completion Animation
+document.addEventListener("DOMContentLoaded", () => {
+    const todoCheckboxes = document.querySelectorAll('.todo-list .form-check-input');
+    
+    todoCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            if (this.checked) {
+                // Add Strikethrough
+                if (label) {
+                    label.classList.add('text-muted', 'text-decoration-line-through');
+                    label.classList.remove('text-dark');
+                }
+                
+                // Trigger Confetti
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: { y: 0.6 },
+                        colors: ['#6366f1', '#a855f7', '#10b981', '#f59e0b', '#ec4899']
+                    });
+                }
+            } else {
+                // Remove Strikethrough
+                if (label) {
+                    label.classList.remove('text-muted', 'text-decoration-line-through');
+                    label.classList.add('text-dark');
+                }
+            }
+        });
+    });
+});
 
+// --- Interactive Dashboard Scripts ---
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Search Bar Keyboard Shortcut (Cmd/Ctrl + K)
+    const searchInput = document.querySelector('.header-search input');
+    if (searchInput) {
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    }
+
+    // 2. Select All Checkbox Logic (Recent Orders Table)
+    const selectAllCheckbox = document.getElementById('selectAll');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            // Find all checkboxes in the table body
+            const rowCheckboxes = this.closest('table').querySelectorAll('tbody .form-check-input');
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    }
+
+    // 3. To-Do List Toggle Logic
+    const todoCheckboxes = document.querySelectorAll('.todo-list .form-check-input');
+    todoCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            if (this.checked) {
+                label.classList.add('text-muted', 'text-decoration-line-through');
+                label.classList.remove('text-dark');
+            } else {
+                label.classList.remove('text-muted', 'text-decoration-line-through');
+                label.classList.add('text-dark');
+            }
+        });
+    });
+
+    // 4. Number Counter Animation (SaaS Style)
+    const statCards = document.querySelectorAll('.single_card.stat-card h3');
+    statCards.forEach(el => {
+        const text = el.innerText;
+        // Extract numbers and non-numbers
+        const match = text.match(/^([^\d]*)(\d[\d,]*)(\s*.*)$/);
+        if (match) {
+            const prefix = match[1];
+            const numberStr = match[2].replace(/,/g, '');
+            const suffix = match[3];
+            const targetValue = parseInt(numberStr, 10);
+            
+            let startValue = 0;
+            const duration = 2000; // 2 seconds
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
+                
+                // Ease out quad
+                const easeOut = progress * (2 - progress);
+                const currentVal = Math.floor(easeOut * targetValue);
+                
+                el.innerText = `${prefix}${currentVal.toLocaleString()}${suffix}`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    el.innerText = text; // Ensure exact final value
+                }
+            }
+            requestAnimationFrame(updateCounter);
+        }
+    });
+
+    // 5. Initialize Bootstrap Tooltips
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    if (typeof bootstrap !== 'undefined') {
+        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    }
+
+    // 6. SweetAlert2 on Table Actions
+    const actionButtons = document.querySelectorAll('.table .fa-ellipsis-vertical');
+    actionButtons.forEach(btn => {
+        btn.closest('button').addEventListener('click', (e) => {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Quick Action',
+                text: 'What would you like to do with this order?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#6366f1',
+                cancelButtonColor: '#ef4444',
+                confirmButtonText: 'View Details',
+                cancelButtonText: 'Cancel'
+            });
+        });
+    });
+
+    // 7. Real-Time Data Simulation (System Health)
+    const cpuBar = document.querySelector('.fa-microchip').closest('.mb-4').querySelector('.progress-bar');
+    const cpuText = document.querySelector('.fa-microchip').closest('.mb-4').querySelector('.fw-bold[style*="color: #6366f1"]');
+    
+    if (cpuBar && cpuText) {
+        setInterval(() => {
+            // Random fluctuation between -5 and +5
+            let currentCpu = parseInt(cpuText.innerText);
+            let diff = Math.floor(Math.random() * 11) - 5;
+            let newCpu = currentCpu + diff;
+            
+            if(newCpu > 95) newCpu = 95;
+            if(newCpu < 20) newCpu = 20;
+            
+            cpuText.innerText = newCpu + '%';
+            cpuBar.style.width = newCpu + '%';
+        }, 3000);
+    }
+
+    // 8. Random Toast Notifications
+    const toastEl = document.getElementById('liveToast');
+    if (toastEl && typeof bootstrap !== 'undefined') {
+        const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+        const messages = [
+            "A new user just registered!",
+            "Payment received: ৳ 1,200",
+            "Server backup completed successfully.",
+            "Warning: CPU usage spiked briefly."
+        ];
+        
+        setInterval(() => {
+            // 20% chance every 10 seconds to show a toast
+            if (Math.random() < 0.2) {
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                document.getElementById('toastMessage').innerText = randomMsg;
+                toast.show();
+            }
+        }, 10000);
+    }
+
+    // 9. Dark Mode Toggle
+    const moonIcon = document.querySelector('.fa-moon') || document.querySelector('.fa-sun');
+    if (moonIcon) {
+        const themeBtn = moonIcon.closest('.header-action-icon');
+        
+        // Check local storage on load
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            moonIcon.classList.replace('fa-moon', 'fa-sun');
+            if(window.ordersChartInstance) {
+                window.ordersChartInstance.options.scales.y.grid.color = 'rgba(255,255,255,0.05)';
+                window.ordersChartInstance.update();
+            }
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                moonIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+                // Adjust chart grids for dark mode if needed
+                if(window.ordersChartInstance) {
+                    window.ordersChartInstance.options.scales.y.grid.color = 'rgba(255,255,255,0.05)';
+                    window.ordersChartInstance.update();
+                }
+            } else {
+                moonIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+                if(window.ordersChartInstance) {
+                    window.ordersChartInstance.options.scales.y.grid.color = 'rgba(0,0,0,0.05)';
+                    window.ordersChartInstance.update();
+                }
+            }
+        });
+    }
+
+    // 10. Live Chart Animations (Updating Data Dynamically)
+    setInterval(() => {
+        if (window.ordersChartInstance) {
+            // Randomly adjust the last data point in the Orders chart
+            const chartData = window.ordersChartInstance.data.datasets[0].data;
+            let lastVal = chartData[chartData.length - 1];
+            let newVal = lastVal + (Math.floor(Math.random() * 11) - 5);
+            if (newVal < 10) newVal = 10;
+            chartData[chartData.length - 1] = newVal;
+            window.ordersChartInstance.update();
+        }
+        
+        if (window.earningsChartInstance) {
+            // Randomly adjust Doughnut chart segments
+            const dData = window.earningsChartInstance.data.datasets[0].data;
+            dData[0] += (Math.floor(Math.random() * 5) - 2); // Sales
+            if(dData[0] < 20) dData[0] = 20;
+            window.earningsChartInstance.update();
+        }
+    }, 4000);
+
+    // 11. Confetti on To-Do List Complete
+    function checkAllTasks() {
+        const allTasks = document.querySelectorAll('.todo-list .form-check-input');
+        const checkedTasks = document.querySelectorAll('.todo-list .form-check-input:checked');
+        if (allTasks.length > 0 && allTasks.length === checkedTasks.length) {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444']
+                });
+            }
+        }
+    }
+    
+    document.querySelectorAll('.todo-list .form-check-input').forEach(checkbox => {
+        checkbox.addEventListener('change', checkAllTasks);
+    });
+
+});
