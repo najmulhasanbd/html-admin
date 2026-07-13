@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         header.addEventListener("click", function (e) {
             e.stopPropagation();
 
-            if (document.body.classList.contains("sidebar-mini") && window.innerWidth > 991) return;
-
             const parent = this.closest(".nav-item");
             const isOpen = parent.classList.contains("open");
 
